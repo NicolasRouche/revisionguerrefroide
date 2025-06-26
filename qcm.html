@@ -167,15 +167,6 @@ questions.forEach((q, idx) => correct["q" + (idx + 1)] = q.c);
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  
-  // Vérifier si l'utilisateur est connecté//
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (!user) {
-    alert('Vous devez être connecté pour faire le QCM');
-    window.location.href = 'login.html';
-    return;
-  }
-  
   const data = new FormData(form);
   let score = 0;
   for (let [key, val] of data.entries()) {
