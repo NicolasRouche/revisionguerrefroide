@@ -1,1 +1,1 @@
-[lien github](https://github.com/NicolasRouche/revisionguerrefroide.git)
+[lien github](https://nicolasrouche.github.io/revisionguerrefroide/)
