@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Révisions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+
+      /* Fond noir */
+      background-color: #271e1a
+    }
+
+    header {
+      background-color: #be501d;
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      color: white;
+    }
+
+    main {
+      max-width: 600px;
+      background-color: #3b2b26;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    main p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+      padding: 0.75rem 1.5rem;
+      background-color: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+    }
+
+    .button:hover {
+      background-color: #be501d;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Révisions : Guerre froide</h1>
+  </header>
+
+  <main>
+    <p>Ici, vous pourrez réviser la guerre froide à travers des notes et un QCM.</p>
+    <div class="btn-group">
+      <a class="button" href="notes.html">Cours de révision</a>
+      <a class="button" href="qcm.html">Commencer le QCM</a>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QCM</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #271e1a;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #be501d;
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      color: white;
+    }
+    main {
+      width: 100%;
+      max-width: 600px;
+      background-color: #3b2b26;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .question {
+      margin-bottom: 2rem;
+    }
+    .question p {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      margin: 0.4rem 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .button {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 30px;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ffffff;
+      color: #000;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #be501d;
+      color: white;
+    }
+    button[type="submit"] {
+      background-color: #ffffff;
+      color: #000;
+    }
+    button[type="submit"]:hover {
+      background-color: #be501d;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>QCM</h1>
+  </header>
+
+  <main>
+    <form id="qcm-form">
+      <!-- Les questions seront insérées ici -->
+    </form>
+    <div class="btn-container">
+      <button type="submit" form="qcm-form" class="button">Finir le QCM</button>
+      <a class="button" href="index.html">Page d'accueil</a>
+    </div>
+  </main>
+
+  <script>
+    const questions = [
+      { q: "Où se situe le siège de l’ONU ?", opts: ["Genève","Paris","New York","Londres"], c: "New York" },
+      { q: "Quels pays sont membres permanents du Conseil de sécurité de l’ONU ?", opts: ["Inde, Japon, Allemagne","France, Royaume‑Uni, États‑Unis, Russie, Chine","Brésil, Italie, Canada","Afrique du Sud, Espagne, Chine"], c: "France, Royaume‑Uni, États‑Unis, Russie, Chine" },
+      { q: "Combien de morts environ ont eu lieu pendant la décolonisation ?", opts: ["600","60 000","600 000","6 millions"], c: "60 000" },
+      { q: "Qui était Nehru ?", opts: ["Un militaire français","Un général anglais","Premier ministre indien après l’indépendance","Président pakistanais"], c: "Premier ministre indien après l’indépendance" },
+      { q: "Quelle vision politique Nehru promouvait‑il ?", opts: ["Capitaliste autoritaire","Socialiste démocratique","Monarchiste","Islamiste radical"], c: "Socialiste démocratique" },
+      { q: "Jinnah était le président de :", opts: ["L'Inde","L'ONU","La Ligue musulmane","La CECA"], c: "La Ligue musulmane" },
+      { q: "Le néocolonialisme correspond à :", opts: ["Une colonisation physique","La liberté totale des anciens pays colonisés","Une dépendance politique/économique aux blocs","Une guerre militaire"], c: "Une dépendance politique/économique aux blocs" },
+      { q: "Que signifie CECA ?", opts: ["Communauté Européenne de Culture Arabe","Communauté Économique du Charbon et de l’Acier","Centre Européen de Commerce Agricole","Comité Européen des Conflits Armés"], c: "Communauté Économique du Charbon et de l’Acier" },
+      { q: "En quelle année la CECA a‑t‑elle été créée ?", opts: ["1945","1951","1957","1960"], c: "1951" },
+      { q: "Quels pays ont fondé la CECA ?", opts: ["France, Italie, Allemagne de l’Ouest, Belgique, Pays‑Bas, Luxembourg","France, Espagne, Portugal, Allemagne de l’Est","Royaume‑Uni, Allemagne de l’Ouest, Suède","Italie, Russie, Autriche"], c: "France, Italie, Allemagne de l’Ouest, Belgique, Pays‑Bas, Luxembourg" },
+      { q: "Quels pays ont rejoint l’UE en 1973 ?", opts: ["Espagne, Portugal, Grèce","Royaume‑Uni, Danemark, Irlande","Allemagne, Autriche, Suède","France, Italie, Belgique"], c: "Royaume‑Uni, Danemark, Irlande" },
+      { q: "En quelle année l’Union européenne a‑t‑elle été créée ?", opts: ["1957","1986","1993","2004"], c: "1993" },
+      { q: "Quels indicateurs mesurent le développement ?", opts: ["Dette publique, superficie, religion","PIB/habitant, espérance de vie, taux d’alphabétisation","PIB total, taux de natalité, nombre de voitures","Taux de chômage, nombre d’hôpitaux, climat"], c: "PIB/habitant, espérance de vie, taux d’alphabétisation" },
+      { q: "Que signifie ONG ?", opts: ["Organisation nationale de guerre","Organisation non gouvernementale","Organisation nucléaire globale","Organisation neutre de géopolitique"], c: "Organisation non gouvernementale" },
+      { q: "Quels pays composent les BRICS ?", opts: ["Belgique, Roumanie, Islande, Canada, Serbie","Brésil, Russie, Inde, Chine, Afrique du Sud","Bulgarie, Russie, Iran, Chili, Slovaquie","Brésil, Rwanda, Indonésie, Cuba, Sénégal"], c: "Brésil, Russie, Inde, Chine, Afrique du Sud" },
+      { q: "Combien d'États sont membres de l’ONU ?", opts: ["27","193","150","202"], c: "193" },
+      { q: "Quand l’Inde est‑elle devenue indépendante ?", opts: ["15 août 1947","3 juin 1947","26 janvier 1950","1er janvier 1948"], c: "15 août 1947" },
+      { q: "Quel traité a marqué la création de la CEE ?", opts: ["Traité de Paris","Traité de Maastricht","Traité de Rome","Traité de Versailles"], c: "Traité de Rome" },
+      { q: "Quelle date marque la chute du mur de Berlin ?", opts: ["25 décembre 1991","9 novembre 1989","3 octobre 1990","7 février 1993"], c: "9 novembre 1989" },
+      { q: "Quel événement majeur s’est produit le 25 décembre 1991 ?", opts: ["Chute du mur de Berlin","Décolonisation de l’Inde","Démission de Gorbatchev et fin de l’URSS","Traité de Maastricht"], c: "Démission de Gorbatchev et fin de l’URSS" },
+      { q: "Combien de morts a causé la Seconde Guerre mondiale ?", opts: ["20 millions","60 millions","80 millions","100 millions"], c: "60 millions" },
+      { q: "Quelle est la durée de la guerre froide ?", opts: ["1945 à 1985","1939 à 1945","1947 à 1991","1950 à 1990"], c: "1947 à 1991" },
+      { q: "Quel type de guerre est la guerre froide ?", opts: ["Guerre nucléaire","Guerre directe","Guerre idéologique","Guerre coloniale"], c: "Guerre idéologique" },
+      { q: "Que signifie RFA ?", opts: ["République Française d’Afrique","République Fédérale Allemande","République Fédérale Américaine","République Fictive d’Allemagne"], c: "République Fédérale Allemande" },
+      { q: "Que signifie RDA ?", opts: ["République Démocratique Africaine","République Démocratique Américaine","République Démocratique Allemande","République Défaite Allemande"], c: "République Démocratique Allemande" },
+      { q: "Quels pays forment le bloc de l’Ouest ?", opts: ["URSS et Chine","États‑Unis et Europe de l’Ouest","URSS et Europe de l’Est","Chine et Japon"], c: "États‑Unis et Europe de l’Ouest" },
+      { q: "Quel terme désigne la séparation entre les deux blocs ?", opts: ["Mur de Berlin","Front de guerre","Rideau de fer","Mur de l’Atlantique"], c: "Rideau de fer" },
+      { q: "Le “soft power” correspond à :", opts: ["L’usage des armes","L’espionnage militaire","L’influence culturelle et idéologique","La conquête spatiale uniquement"], c: "L’influence culturelle et idéologique" },
+      { q: "Quel est le rôle principal de l’ONU ?", opts: ["Déclencher des guerres","Gérer les colonies","Maintenir la paix mondiale","Contrôler les économies"], c: "Maintenir la paix mondiale" },
+      { q: "Quel événement marque la fin de la guerre froide ?", opts: ["Chute de Napoléon","Chute du mur de Berlin","Attentats du 11 septembre","Début de la Seconde Guerre mondiale"], c: "Chute du mur de Berlin" },
+      { q: "Qui est l’auteur de “Captain America contre Electro” ?", opts: ["Stan Lee","John Romita","Joe Simon","Jack Kirby"], c: "John Romita" },
+      { q: "Dans quelle œuvre voit‑on Captain America affronter des ennemis communistes ?", opts: ["Le face à face URSS‑USA","Ne fais pas de bêtises","Captain America contre Electro","Superman contre Staline"], c: "Captain America contre Electro" },
+      { q: "Quel symbole est associé aux ennemis dans “Captain America contre Electro” ?", opts: ["Croix gammée","Symbole de l’URSS","Drapeau américain","Croix rouge"], c: "Symbole de l’URSS" },
+      { q: "À quelle période correspond la publication de “Captain America contre Electro” ?", opts: ["Pendant la Première Guerre mondiale","Après la Seconde Guerre mondiale","En pleine guerre froide","En 1991"], c: "En pleine guerre froide" },
+      { q: "Quel est le message de “Ne fais pas de bêtises” (1947) ?", opts: ["Encourager la démocratie","Critiquer le capitalisme américain","Faire la paix","Défendre l’environnement"], c: "Critiquer le capitalisme américain" },
+      { q: "Que tient la figure représentant le président américain dans “Ne fais pas de bêtises” ?", opts: ["Une colombe et une olive","Une bombe et une torche","Une carte de l’Europe","Un livre et un drapeau"], c: "Une bombe et une torche" },
+      { q: "Quelle année correspond à “Ne fais pas de bêtises” ?", opts: ["1954","1962","1947","1991"], c: "1947" },
+      { q: "Dans “Le face à face États‑Unis/URSS”, quels dirigeants sont mis en scène ?", opts: ["Roosevelt et Staline","Kennedy et Gorbatchev","Kennedy et Khrouchtchev","Truman et Brejnev"], c: "Kennedy et Khrouchtchev" },
+      { q: "Quelles crises sont évoquées dans “Le face à face États‑Unis/URSS” ?", opts: ["Crises économiques","Crise de Suez et guerre du Vietnam","Crise de Berlin (1961) et crise de Cuba (1962)","Guerre d’Irak et attentats de 2001"], c: "Crise de Berlin (1961) et crise de Cuba (1962)" },
+      { q: "Quel est le thème commun des trois œuvres étudiées ?", opts: ["L’art moderne","La propagande pendant la guerre froide","L’histoire du communisme","La culture pop américaine"], c: "La propagande pendant la guerre froide" }
+    ];
+
+// Shuffle questions
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+shuffle(questions);
+
+const form = document.getElementById("qcm-form");
+questions.forEach((q, idx) => {
+  const div = document.createElement("div");
+  div.className = "question";
+  const num = idx + 1;
+  let inner = `<p>${num}. ${q.q}</p>`;
+  q.opts.forEach(opt => {
+    inner += `<label><input type="radio" name="q${num}" value="${opt}"> ${opt}</label>`;
+  });
+  div.innerHTML = inner;
+  form.appendChild(div);
+});
+
+const correct = {};
+questions.forEach((q, idx) => correct["q" + (idx + 1)] = q.c);
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  
+  // Vérifier si l'utilisateur est connecté//
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user) {
+    alert('Vous devez être connecté pour faire le QCM');
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  const data = new FormData(form);
+  let score = 0;
+  for (let [key, val] of data.entries()) {
+    if (correct[key] === val) score++;
+  }
+  const total = Object.keys(correct).length;
+  
+  console.log('Score calculé:', score, '/', total); // Debug
+  
+  window.location.href = `resultat.html?score=${score}&total=${total}`;
+});
+  </script>
+</body>
+</html>
