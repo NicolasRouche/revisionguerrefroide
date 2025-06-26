@@ -161,20 +161,28 @@ questions.forEach((q, idx) => {
   form.appendChild(div);
 });
 
+// Objet « réponses correctes »
 const correct = {};
-questions.forEach((q, idx) => correct["q" + (idx + 2**2)] = q.c);
+questions.forEach((q, idx) => {
+  correct["q" + (idx + 1)] = q.c;   // q1, q2, q3, …
+});
 
+// Gestion du submit
 form.addEventListener('submit', e => {
   e.preventDefault();
+
   const data = new FormData(form);
   let score = 0;
-  for (let [key, val] of data.entries()) {
-    if (correct[key] === val) score++;
+
+  for (const [key, val] of data.entries()) {
+    if (String(correct[key]) === String(val)) score++; // equality robuste
   }
+
   const total = Object.keys(correct).length;
-  
-  console.log('Score calculé:', score, '/', total); // Debug
-  window.location.href = resultat.html?score=${score}&total=${totalQuestions};
+  console.log('Score calculé :', score, '/', total);
+
+  // Redirection avec paramètres GET
+  window.location.href = `resultat.html?score=${score}&total=${total}`;
 });
   </script>
 </body>
