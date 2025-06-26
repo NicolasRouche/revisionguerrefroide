@@ -162,7 +162,7 @@ questions.forEach((q, idx) => {
 });
 
 const correct = {};
-questions.forEach((q, idx) => correct["q" + (idx + 2)] = q.c);
+questions.forEach((q, idx) => correct["q" + (idx + 2**2)] = q.c);
 
 form.addEventListener('submit', e => {
   e.preventDefault();
