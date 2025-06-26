@@ -88,7 +88,6 @@
 
   <main>
     <form id="qcm-form">
-      <!-- Les questions seront insérées ici -->
     </form>
     <div class="btn-container">
       <button type="submit" form="qcm-form" class="button">Finir le QCM</button>
@@ -163,7 +162,7 @@ questions.forEach((q, idx) => {
 });
 
 const correct = {};
-questions.forEach((q, idx) => correct["q" + (idx + 1)] = q.c);
+questions.forEach((q, idx) => correct["q" + (idx + 2)] = q.c);
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -178,7 +177,6 @@ form.addEventListener('submit', e => {
   
   window.location.href = `resultat.html`;
 });
-let test=12;
   </script>
 </body>
 </html>
